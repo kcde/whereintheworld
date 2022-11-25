@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.primary-bg {
+  @apply bg-light-200 dark:bg-dark-200 transition-colors ease-in;
+}
+
+.primary-text {
+  @apply text-dark-300 dark:text-light-100 transition-colors ease-in;
+}
