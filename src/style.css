@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 .primary-bg {
-  @apply bg-light-200 dark:bg-dark-200 transition-colors ease-in;
+  @apply bg-light-200 dark:bg-dark-200 transition-colors duration-300 ease-in;
 }
 
 .primary-text {
