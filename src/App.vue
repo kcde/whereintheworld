@@ -1,6 +1,7 @@
 <script>
   import TheHeader from './components/UI/TheHeader.vue';
-  import { mapGetters } from 'vuex';
+  import { fetchCountries } from './utils';
+  import { mapGetters, mapActions } from 'vuex';
   export default {
     components: { TheHeader },
 
@@ -8,6 +9,17 @@
       themeMode() {
         return this.$store.state.darkMode ? 'dark' : '';
       },
+    },
+
+    methods: {
+      ...mapActions(['setCountries']),
+    },
+
+    created() {
+      fetchCountries().then((data) => {
+        this.setCountries({ countries: data });
+        console.log(this.$store.state.countries);
+      });
     },
   };
 </script>

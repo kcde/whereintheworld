@@ -8,7 +8,9 @@
 <template>
   <main class="">
     <div class="max-w-screen-xlarge mx-auto px-4 md:px-8 xl:px-20">
-      <CountryCardSkeletonList />
+      <CountryCardSkeletonList v-if="!$store.state.countries.length" />
+
+      <p v-else>Countries loaded</p>
     </div>
   </main>
 </template>
