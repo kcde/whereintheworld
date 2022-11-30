@@ -3,16 +3,43 @@
   export default {
     data() {
       return {
-        count: 40,
+        count: 20,
       };
     },
 
     components: { CountryCard },
 
+    methods: {
+      addNewCountries() {
+        if (
+          window.innerHeight + window.scrollY >= document.body.offsetHeight &&
+          this.count <= this.countries.length
+        ) {
+          this.count += 20;
+        }
+      },
+    },
+
     computed: {
       countries() {
         return this.$store.state.countries;
       },
+    },
+
+    watch: {
+      count(curr) {
+        if (curr >= this.countries.length) {
+          window.removeEventListener('scroll', this.addNewCountries);
+        }
+      },
+    },
+
+    mounted() {
+      window.addEventListener('scroll', this.addNewCountries);
+    },
+
+    beforeUnmount() {
+      window.removeEventListener('scroll', this.addNewCountries);
     },
   };
 </script>
@@ -25,7 +52,7 @@
       :region="country.region"
       :capitalsList="country.capital || []"
       :population="country.population"
-      :flag="country.flags[0]"
+      :flag="country.flags[1]"
     />
   </div>
 </template>
