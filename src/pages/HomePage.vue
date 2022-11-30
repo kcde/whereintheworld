@@ -1,8 +1,9 @@
 <script>
   import CountryCardSkeletonList from '../components/UI/skeleton/CountryCardSkeletonList.vue';
+  import CountryList from '../components/country/CountryList.vue';
 
   export default {
-    components: { CountryCardSkeletonList },
+    components: { CountryCardSkeletonList, CountryList },
   };
 </script>
 <template>
@@ -10,7 +11,7 @@
     <div class="max-w-screen-xlarge mx-auto px-4 md:px-8 xl:px-20">
       <CountryCardSkeletonList v-if="!$store.state.countries.length" />
 
-      <p v-else>Countries loaded</p>
+      <CountryList v-else />
     </div>
   </main>
 </template>

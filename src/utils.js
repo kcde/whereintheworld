@@ -1,4 +1,4 @@
-const endpoint = 'https://restcountries.com/v2/all';
+const endpoint = 'https://restcountries.com/v3/all';
 
 async function fetchCountries() {
   try {
