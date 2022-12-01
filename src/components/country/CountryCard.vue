@@ -39,7 +39,9 @@
     class="w-full max-w-[264px] min-h-[336px] pb-5 bg-light-100 dark:bg-dark-100 shadow-md rounded-md overflow-hidden"
   >
     <!-- country flag -->
-    <div class="w-full h-40 bg-light-300 dark:bg-dark-200 overflow-hidden">
+    <div
+      class="w-full h-40 bg-light-300 dark:bg-dark-200 overflow-hidden shadow-sm"
+    >
       <img :src="flag" alt="" class="w-full h-full object-cover" />
     </div>
 

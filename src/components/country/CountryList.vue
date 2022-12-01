@@ -1,5 +1,6 @@
 <script>
   import CountryCard from './CountryCard.vue';
+  import SearchInput from '../UI/SearchInput.vue';
   export default {
     data() {
       return {
@@ -7,7 +8,7 @@
       };
     },
 
-    components: { CountryCard },
+    components: { CountryCard, SearchInput },
 
     methods: {
       addNewCountries() {
@@ -44,6 +45,7 @@
   };
 </script>
 <template>
+  <SearchInput />
   <div class="gap-10 flex flex-wrap justify-center md:justify-between">
     <CountryCard
       v-for="country in countries.slice(0, count)"
