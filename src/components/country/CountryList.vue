@@ -45,7 +45,10 @@
   };
 </script>
 <template>
-  <SearchInput />
+  <div class="mb-10 lg:mb-12">
+    <SearchInput />
+  </div>
+
   <div class="gap-10 flex flex-wrap justify-center md:justify-between">
     <CountryCard
       v-for="country in countries.slice(0, count)"
