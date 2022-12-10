@@ -4,8 +4,6 @@ async function fetchCountries() {
   try {
     const response = await fetch(endpoint);
     const countries = await response.json();
-    console.log(countries[0]);
-    console.log('countries');
 
     return countries;
   } catch (err) {
@@ -13,4 +11,21 @@ async function fetchCountries() {
   }
 }
 
-export { fetchCountries };
+function debounce(callbck, time = 500) {
+  //init timer
+  let timer;
+
+  //return function
+  return (...args) => {
+    //clear timeout if ther is timer
+    clearTimeout(timer);
+    //set a new timer
+    const context = this;
+    timer = setTimeout(() => {
+      //call function on timeout
+      callbck.apply(context, args);
+    }, time);
+  };
+}
+
+export { fetchCountries, debounce };

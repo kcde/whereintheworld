@@ -1,10 +1,14 @@
 <script>
   import CountryCard from './CountryCard.vue';
   import SearchInput from '../UI/SearchInput.vue';
+  import { debounce } from '../../utils';
   export default {
     data() {
       return {
         count: 20,
+        debounceSearch: debounce((e) => {
+          console.log(e);
+        }),
       };
     },
 
@@ -12,12 +16,17 @@
 
     methods: {
       addNewCountries() {
+        //TODO: Make sure that the count is never over the number of countries to display
+        // use case if for when filtering the data based on search or region selection
         if (
           window.innerHeight + window.scrollY >= document.body.offsetHeight &&
           this.count <= this.countries.length
         ) {
           this.count += 20;
         }
+      },
+      searchHandler(e) {
+        this.debounceSearch(e);
       },
     },
 
@@ -46,7 +55,7 @@
 </script>
 <template>
   <div class="mb-10 lg:mb-12">
-    <SearchInput />
+    <SearchInput @input="(e) => searchHandler(e)" />
   </div>
 
   <div class="gap-10 flex flex-wrap justify-center md:justify-between">

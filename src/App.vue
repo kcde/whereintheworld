@@ -18,7 +18,6 @@
     created() {
       fetchCountries().then((data) => {
         this.setCountries({ countries: data });
-        console.log(this.$store.state.countries);
       });
     },
   };

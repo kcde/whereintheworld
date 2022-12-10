@@ -42,7 +42,11 @@
     <div
       class="w-full h-40 bg-light-300 dark:bg-dark-200 overflow-hidden shadow-sm"
     >
-      <img :src="flag" alt="" class="w-full h-full object-cover" />
+      <img
+        :src="flag"
+        :alt="'an image of ' + name + ' flag'"
+        class="w-full h-full object-cover"
+      />
     </div>
 
     <div class="p-6">

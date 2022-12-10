@@ -5,6 +5,7 @@ const store = createStore({
     return {
       darkMode: false,
       countries: [],
+      selectedCountryFilter: null,
     };
   },
 
