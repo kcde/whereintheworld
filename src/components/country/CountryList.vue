@@ -6,8 +6,11 @@
     data() {
       return {
         count: 20,
+        searchInput: '',
+        searchResult: [],
         debounceSearch: debounce((e) => {
-          console.log(e);
+          console.log(this.$store.state.countries);
+          this.searchInput = e;
         }),
       };
     },
@@ -18,6 +21,9 @@
       addNewCountries() {
         //TODO: Make sure that the count is never over the number of countries to display
         // use case if for when filtering the data based on search or region selection
+
+        //TODO: fix issue with load on scroll to end, limit can get reached if we keep scrolling even when displaying search result
+
         if (
           window.innerHeight + window.scrollY >= document.body.offsetHeight &&
           this.count <= this.countries.length
@@ -25,13 +31,17 @@
           this.count += 20;
         }
       },
-      searchHandler(e) {
-        this.debounceSearch(e);
+      searchHandler(searhString) {
+        this.debounceSearch(searhString);
       },
     },
 
     computed: {
       countries() {
+        if (this.searchInput != '') {
+          return this.searchResult;
+        }
+
         return this.$store.state.countries;
       },
     },
@@ -40,6 +50,16 @@
       count(curr) {
         if (curr >= this.countries.length) {
           window.removeEventListener('scroll', this.addNewCountries);
+        }
+      },
+
+      searchInput(val) {
+        if (val != '') {
+          const pattern = new RegExp(val, 'gi');
+
+          this.searchResult = this.$store.state.countries.filter((country) =>
+            pattern.test(country.name.common)
+          );
         }
       },
     },
