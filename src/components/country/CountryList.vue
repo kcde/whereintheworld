@@ -3,15 +3,17 @@
   import SearchInput from '../UI/SearchInput.vue';
   import CountryRegionSelect from '../UI/CountryRegionSelect.vue';
   import { debounce } from '../../utils';
-  import { mapGetters } from 'vuex';
+  import { mapGetters, mapActions } from 'vuex';
   export default {
     data() {
       return {
         count: 20,
         searchInput: '',
-        searchResult: [],
+        searchFilter: {
+          input: '',
+          region: this.$store.state.selectedRegion,
+        },
         debounceSearch: debounce((e) => {
-          console.log(this.$store.state.countries);
           this.searchInput = e;
         }),
       };
@@ -36,18 +38,32 @@
       searchHandler(searhString) {
         this.debounceSearch(searhString);
       },
+      selectRegion(region) {
+        this.setRegion({ region });
+      },
+      ...mapActions(['setRegion']),
     },
 
     computed: {
-      countries() {
+      filteredCountries() {
         if (this.searchInput != '') {
           return this.searchResult;
         }
 
-        return this.$store.state.countries;
+        return this.countries;
       },
 
-      ...mapGetters(['regions']),
+      searchResult() {
+        if (this.searchInput != '') {
+          const pattern = new RegExp(this.searchInput, 'gi');
+
+          return this.countries.filter((country) =>
+            pattern.test(country.name.common)
+          );
+        }
+      },
+
+      ...mapGetters(['regions', 'countries']),
     },
 
     watch: {
@@ -59,11 +75,10 @@
 
       searchInput(val) {
         if (val != '') {
-          const pattern = new RegExp(val, 'gi');
-
-          this.searchResult = this.$store.state.countries.filter((country) =>
-            pattern.test(country.name.common)
-          );
+          // const pattern = new RegExp(val, 'gi');
+          // this.searchResult = this.countries.filter((country) =>
+          //   pattern.test(country.name.common)
+          // );
         }
       },
     },
@@ -83,12 +98,15 @@
   >
     <SearchInput @input="(e) => searchHandler(e)" />
 
-    <CountryRegionSelect :regions="regions" />
+    <CountryRegionSelect
+      :regions="regions"
+      @select-region="(e) => selectRegion(e)"
+    />
   </div>
 
   <div class="gap-10 flex flex-wrap justify-center md:justify-between">
     <CountryCard
-      v-for="country in countries.slice(0, count)"
+      v-for="country in filteredCountries.slice(0, count)"
       :key="country.name"
       :name="country.name.common"
       :region="country.region"

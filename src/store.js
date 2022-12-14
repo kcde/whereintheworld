@@ -5,8 +5,7 @@ const store = createStore({
   state() {
     return {
       darkMode: false,
-      countries: [],
-      selectedCountryFilter: null,
+      allCountries: [],
       selectedRegion: null,
     };
   },
@@ -28,7 +27,7 @@ const store = createStore({
     },
 
     setCountries(state, payload) {
-      state.countries = payload.countries;
+      state.allCountries = payload.countries;
     },
 
     setRegion(state, payload) {
@@ -42,8 +41,18 @@ const store = createStore({
 
     regions(state) {
       return _.sortBy(
-        _.uniq(state.countries.map((country) => country.region)),
+        _.uniq(state.allCountries.map((country) => country.region)),
         (el) => el
+      );
+    },
+
+    countries(state) {
+      if (state.selectedRegion == null) {
+        return state.allCountries;
+      }
+
+      return state.allCountries.filter(
+        (country) => country.region == state.selectedRegion
       );
     },
   },

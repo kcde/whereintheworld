@@ -4,6 +4,7 @@
   import { mapActions, mapGetters } from 'vuex';
 
   export default {
+    emits: ['select-region'],
     props: {
       regions: {
         type: Array,
@@ -21,7 +22,9 @@
 
     methods: {
       selectRegion(region) {
-        this.setRegion({ region });
+        // this.setRegion({ region });
+
+        this.$emit('select-region', region);
         this.showOptions = false;
       },
 
@@ -35,7 +38,7 @@
 <template>
   <div class="primary-text relative w-full max-w-[200px]">
     <div
-      class="relative bg-light-100 dark:bg-dark-100 rounded-md py-4 pl-6 cursor-pointer"
+      class="relative bg-light-100 dark:bg-dark-100 rounded-md py-4 pl-6 cursor-pointer shadow-md"
       @click="showOptions = !showOptions"
     >
       <p class="leading-5 text-sm">
