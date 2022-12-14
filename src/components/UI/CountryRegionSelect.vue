@@ -34,7 +34,10 @@
 </script>
 <template>
   <div class="primary-text relative w-full max-w-[200px]">
-    <div class="relative bg-light-100 dark:bg-dark-100 rounded-md py-4 pl-6">
+    <div
+      class="relative bg-light-100 dark:bg-dark-100 rounded-md py-4 pl-6 cursor-pointer"
+      @click="showOptions = !showOptions"
+    >
       <p class="leading-5 text-sm">
         {{ $store.state.selectedRegion || 'Filter by Region' }}
       </p>
@@ -43,7 +46,6 @@
       <div
         class="absolute right-[19px] top-2/4 -translate-y-2/4 p-2 cursor-pointer transition-transform"
         :class="{ 'rotate-180': !showOptions }"
-        @click="showOptions = !showOptions"
       >
         <Transition mode="out-in">
           <LightChevron v-if="isModeDark" />
