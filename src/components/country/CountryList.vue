@@ -1,7 +1,9 @@
 <script>
   import CountryCard from './CountryCard.vue';
   import SearchInput from '../UI/SearchInput.vue';
+  import CountryRegionSelect from '../UI/CountryRegionSelect.vue';
   import { debounce } from '../../utils';
+  import { mapGetters } from 'vuex';
   export default {
     data() {
       return {
@@ -15,7 +17,7 @@
       };
     },
 
-    components: { CountryCard, SearchInput },
+    components: { CountryCard, SearchInput, CountryRegionSelect },
 
     methods: {
       addNewCountries() {
@@ -44,6 +46,8 @@
 
         return this.$store.state.countries;
       },
+
+      ...mapGetters(['regions']),
     },
 
     watch: {
@@ -74,8 +78,12 @@
   };
 </script>
 <template>
-  <div class="mb-10 lg:mb-12">
+  <div
+    class="mb-10 lg:mb-12 flex lg:items-center flex-col gap-10 lg:flex-row justify-between"
+  >
     <SearchInput @input="(e) => searchHandler(e)" />
+
+    <CountryRegionSelect :regions="regions" />
   </div>
 
   <div class="gap-10 flex flex-wrap justify-center md:justify-between">

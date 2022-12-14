@@ -14,7 +14,7 @@
 </script>
 <template>
   <!-- search container -->
-  <label class="block max-w-[480px]">
+  <label class="block w-full max-w-[480px]">
     <div
       class="relative flex items-center px-8 py-3 bg-light-100 dark:bg-dark-100 shadow-md rounded-md w-full focus-within:outline outline-light-300 transition-all"
     >
