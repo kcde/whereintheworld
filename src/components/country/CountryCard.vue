@@ -21,6 +21,10 @@
         type: Array,
         required: true,
       },
+      code: {
+        type: String,
+        required: true,
+      },
     },
 
     computed: {
@@ -35,7 +39,8 @@
   };
 </script>
 <template>
-  <div
+  <RouterLink
+    :to="`/${code}`"
     class="w-full max-w-[264px] min-h-[336px] pb-5 bg-light-100 dark:bg-dark-100 shadow-md rounded-md overflow-hidden"
   >
     <!-- country flag -->
@@ -66,6 +71,6 @@
         </p>
       </div>
     </div>
-  </div>
+  </RouterLink>
 </template>
 <style scoped></style>

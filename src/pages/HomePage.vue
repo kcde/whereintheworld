@@ -8,7 +8,7 @@
 </script>
 <template>
   <main class="">
-    <div class="max-w-screen-xlarge mx-auto px-4 md:px-8 xl:px-20">
+    <div class="">
       <CountryCardSkeletonList v-if="!$store.state.allCountries.length" />
 
       <CountryList v-else />

@@ -122,6 +122,7 @@
       :capitalsList="country.capital || []"
       :population="country.population"
       :flag="country.flags[1]"
+      :code="country.cca3"
     />
   </div>
 
