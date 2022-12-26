@@ -7,6 +7,7 @@
     fill-rule="evenodd"
     clip-rule="evenodd"
     viewBox="0 0 406 511.8"
+    class="dark-light-100 dark:fill-light-100"
   >
     <path
       fill-rule="nonzero"
