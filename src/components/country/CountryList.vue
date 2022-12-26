@@ -4,6 +4,7 @@
   import CountryRegionSelect from '../UI/CountryRegionSelect.vue';
   import { debounce } from '../../utils';
   import { mapGetters, mapActions } from 'vuex';
+  import WhereInTheWorld from '../UI/WhereInTheWorld.vue';
   export default {
     data() {
       return {
@@ -19,7 +20,12 @@
       };
     },
 
-    components: { CountryCard, SearchInput, CountryRegionSelect },
+    components: {
+      CountryCard,
+      SearchInput,
+      CountryRegionSelect,
+      WhereInTheWorld,
+    },
 
     methods: {
       addNewCountries() {
@@ -104,7 +110,10 @@
     />
   </div>
 
-  <div class="gap-10 flex flex-wrap justify-center md:justify-between">
+  <div
+    class="gap-10 flex flex-wrap justify-center md:justify-between"
+    v-if="filteredCountries.length > 0"
+  >
     <CountryCard
       v-for="country in filteredCountries.slice(0, count)"
       :key="country.name"
@@ -114,6 +123,10 @@
       :population="country.population"
       :flag="country.flags[1]"
     />
+  </div>
+
+  <div v-else class="grid place-items-center mt-20">
+    <WhereInTheWorld class="" />
   </div>
 </template>
 <style scoped></style>
