@@ -27,7 +27,7 @@
     <div class="primary-bg font-nunito-sans min-h-screen">
       <TheHeader />
 
-      <div class="max-w-screen-xlarge mx-auto px-4 md:px-8 xl:px-20">
+      <div class="max-w-screen-xlarge mx-auto px-4 md:px-8 xl:px-20 pb-10">
         <RouterView />
       </div>
     </div>

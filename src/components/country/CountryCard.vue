@@ -1,4 +1,6 @@
 <script>
+  import { formatNumber } from '../../utils';
+
   export default {
     props: {
       flag: {
@@ -29,8 +31,7 @@
 
     computed: {
       formattedPopulation() {
-        //TODO extract this to be a util function
-        return new Intl.NumberFormat().format(this.population);
+        return formatNumber(this.population);
       },
 
       capital() {

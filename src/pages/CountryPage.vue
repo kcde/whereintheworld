@@ -82,9 +82,12 @@
     Loading
   </div>
 
-  <div class="flex flex-col gap-10 primary-text" v-else>
+  <div
+    class="flex flex-col lg:flex-row md:justify-between gap-10 md:gap-14 xl:gap-24 primary-text items-center"
+    v-else
+  >
     <!-- FLAG -->
-    <div class="rounded-md overflow-hidden h-[229px]">
+    <div class="rounded-md overflow-hidden h-[229px] md:h-[400px] w-full">
       <img
         :src="countryData.flags[0]"
         :alt="`${countryData.name.common} flag`"
@@ -92,16 +95,16 @@
       />
     </div>
 
-    <div class="">
+    <div class="w-full">
+      <h2 class="font-bold text-xl lg:text-3xl mb-4 lg:mb-6">
+        {{ countryData.name.common }}
+      </h2>
+
       <!-- INFO GRID -->
-      <div class="grid gap-10">
+      <div class="grid gap-10 md:gap-5 md:grid-cols-2">
         <!-- Info col1 -->
         <div class="space-y-3">
           <!-- NAME -->
-
-          <h2 class="font-bold text-xl lg:text-3xl mb-4 lg:mb-6">
-            {{ countryData.name.common }}
-          </h2>
 
           <!-- Native name -->
           <p class="font-semibold text-sm">
@@ -147,7 +150,7 @@
         </div>
 
         <!-- info col3 -->
-        <div class="space-y-3">
+        <div class="space-y-3 md:col-span-2">
           <h3 class="font-semibold">Border Countries:</h3>
 
           <div class="flex flex-wrap gap-2">
