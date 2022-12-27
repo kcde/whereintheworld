@@ -29,6 +29,7 @@
 
     computed: {
       formattedPopulation() {
+        //TODO extract this to be a util function
         return new Intl.NumberFormat().format(this.population);
       },
 

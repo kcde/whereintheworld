@@ -4,8 +4,6 @@ async function fetchCountries() {
   try {
     const response = await fetch(endpoint + 'all');
     const countries = await response.json();
-    console.log(countries[0]);
-
     return countries;
   } catch (err) {
     console.log(err);
@@ -18,7 +16,6 @@ async function fetchCountry(countryCode) {
   try {
     const response = await fetch(countryEndpoint);
     const country = await response.json();
-    console.log(country);
     return country;
   } catch (err) {
     console.log(err);
@@ -44,4 +41,23 @@ function debounce(callbck, time = 500) {
   };
 }
 
-export { fetchCountries, debounce };
+function formatNumber(number) {
+  return new Intl.NumberFormat().format(number);
+}
+
+async function getCountryNameWithCode(code) {
+  try {
+    const data = await fetchCountry(code);
+    return data[0].name.common;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export {
+  fetchCountries,
+  fetchCountry,
+  debounce,
+  formatNumber,
+  getCountryNameWithCode,
+};
