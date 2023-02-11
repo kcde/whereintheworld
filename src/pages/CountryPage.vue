@@ -1,11 +1,19 @@
 <script>
   import BorderCountryPill from '../components/country/BorderCountryPill.vue';
   import BaseButton from '../components/UI/BaseButton.vue';
+  import CountryPageSkeleton from '../components/UI/skeleton/CountryPageSkeleton.vue';
+  import SkeletonText from '../components/UI/skeleton/SkeletonText.vue';
   import LeftArrow from '../svgs/LeftArrow.vue';
   import { fetchCountry, formatNumber } from '../utils';
 
   export default {
-    components: { BaseButton, LeftArrow, BorderCountryPill },
+    components: {
+      BaseButton,
+      LeftArrow,
+      BorderCountryPill,
+      SkeletonText,
+      CountryPageSkeleton,
+    },
     data() {
       return {
         countryData: null,
@@ -92,10 +100,7 @@
     </BaseButton>
   </div>
 
-  <div v-if="countryData == null">
-    <!-- FLAG -->
-    Loading
-  </div>
+  <CountryPageSkeleton v-if="countryData == null" />
 
   <div
     class="flex flex-col lg:flex-row md:justify-between gap-10 md:gap-14 xl:gap-24 primary-text items-center"
