@@ -21,7 +21,9 @@
   };
 </script>
 <template>
-  <button
+  <div
+    tabindex="0"
+    role="button"
     class="flex items-center gap-2 font-semibold primary-text text-xs md:text-"
     @click="toggleTheme"
   >
@@ -32,7 +34,7 @@
       </Transition>
     </div>
     Dark Mode
-  </button>
+  </div>
 </template>
 <style scoped>
   .toggle-icon-enter-active {
