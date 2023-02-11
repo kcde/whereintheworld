@@ -58,7 +58,7 @@
 
     <div class="p-6">
       <!-- country name -->
-      <h3 class="primary-text font-extrabold text-lg mb-4">{{ name }}</h3>
+      <p class="primary-text font-extrabold text-lg mb-4">{{ name }}</p>
 
       <div class="space-y-2">
         <p class="primary-text text-sm">
