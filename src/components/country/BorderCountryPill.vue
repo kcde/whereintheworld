@@ -28,6 +28,8 @@
   };
 </script>
 <template>
-  <BasePill>{{ countryName }}</BasePill>
+  <RouterLink :to="`/${this.code}`">
+    <BasePill>{{ countryName }}</BasePill>
+  </RouterLink>
 </template>
 <style scoped></style>

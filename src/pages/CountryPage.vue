@@ -1,22 +1,26 @@
 <script>
   import BorderCountryPill from '../components/country/BorderCountryPill.vue';
   import BaseButton from '../components/UI/BaseButton.vue';
-  import BasePill from '../components/UI/BasePill.vue';
   import LeftArrow from '../svgs/LeftArrow.vue';
   import { fetchCountry, formatNumber } from '../utils';
 
   export default {
-    components: { BaseButton, LeftArrow, BasePill, BorderCountryPill },
+    components: { BaseButton, LeftArrow, BorderCountryPill },
     data() {
       return {
         countryData: null,
       };
     },
 
+    methods: {
+      backBtnHandler() {
+        this.$router.back();
+      },
+    },
+
     mounted() {
       fetchCountry(this.$route.params.countryCode)
         .then((data) => {
-          console.log(data);
           this.countryData = data[0];
         })
         .catch((err) => {
@@ -68,11 +72,22 @@
         return this.countryData.borders || [];
       },
     },
+
+    beforeRouteUpdate(to, _from) {
+      this.countryData = null;
+      fetchCountry(to.params.countryCode)
+        .then((data) => {
+          this.countryData = data[0];
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   };
 </script>
 <template>
   <div class="mb-16 lg:mb-20">
-    <BaseButton>
+    <BaseButton :onClick="backBtnHandler">
       <div class="flex items-center gap-3"><LeftArrow /> Back</div>
     </BaseButton>
   </div>
@@ -153,16 +168,14 @@
         <div class="space-y-3 md:col-span-2">
           <h3 class="font-semibold">Border Countries:</h3>
 
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-2" v-if="borders.length > 0">
             <BorderCountryPill
-              v-if="borders.length > 0"
               v-for="code in borders"
               :key="code"
               :code="code"
             />
-
-            <p v-else>N/A</p>
           </div>
+          <p v-else>N/A</p>
         </div>
       </div>
     </div>
