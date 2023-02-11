@@ -21,14 +21,17 @@
   };
 </script>
 <template>
-  <button class="flex items-center gap-2" @click="toggleTheme">
+  <button
+    class="flex items-center gap-2 font-semibold primary-text text-xs md:text-"
+    @click="toggleTheme"
+  >
     <div class="overflow-hidden">
       <Transition name="toggle-icon" mode="out-in">
         <DarkMoon v-if="isModeDark" />
         <LightMoon v-else />
       </Transition>
     </div>
-    <p class="font-semibold primary-text text-xs md:text-base">Dark Mode</p>
+    Dark Mode
   </button>
 </template>
 <style scoped>
